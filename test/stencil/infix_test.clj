@@ -231,3 +231,8 @@
   (testing "syntax errors should be thrown"
     (are [x] (thrown? ExceptionInfo (infix/parse x))
       "* 3 4" "- 1 a" "+ x 2" "/ x y")))
+
+(deftest atPath-function
+  (is (= "red" (run "atPath(\"$.color\", vals)", {"vals" {"color" "red"}})))
+  (is (= ["red" "blue"] (run "atPath(\"$.[*].color\", vals)", {"vals" [{"color" "red"}, {"color" "blue"}]})))
+  (is (= ["red" "blue"] (run "atPath(\"$.nested[*].color\", vals)", {"vals" {"nested" [{"color" "red"}, {"color" "blue"}]}}))))

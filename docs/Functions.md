@@ -26,6 +26,7 @@ This is a short description of the functions implemented in Stencil:
 - `titlecase`
 - `uppercase`
 - [xml](#xml)
+- [atPath](#atPath)
 - [contains](#contains)
 - [sum](#sum)
 
@@ -154,6 +155,10 @@ Expects one number argument. Rounds the argument to the closest integer that is 
 ### Ceil
 
 Expects one number argument. Rounds its argument to the closest integer that is not smaller than the argument. Usage: `ceil(x)`
+
+### atPath
+
+Expects two arguments: a value containing a valid json path, and jsonb object. Returns values at specified json path. Usage: `atPath("myJsonPath", myJsonObject)`
 
 ### Contains
 

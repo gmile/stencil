@@ -4,6 +4,9 @@
 
 (set! *warn-on-reflection* true)
 
+(require 'json-path)
+(require '[clojure.walk :as walk])
+
 (defmulti call-fn
   "Extend this multimethod to make additional functions available from the template files.
    The first argument is the lowercase function name which is used for dispatching the calls.
@@ -37,3 +40,6 @@
     (->HideTableColumnMarker)))
 
 (defmethod call-fn "hideRow" [_] (->HideTableRowMarker))
+
+(defmethod call-fn "atPath" [_ path json]
+  (json-path/at-path path (walk/keywordize-keys json)))
